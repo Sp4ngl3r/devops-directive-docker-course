@@ -5,6 +5,14 @@
 # Use alpine for smaller image size
 FROM golang:1.24.6-bullseye AS build-common
 
+# Update package lists and apply security updates for Kerberos vulnerabilities
+RUN apt-get update && apt-get upgrade -y \
+    libgssapi-krb5-2 \
+    libk5crypto3 \
+    libkrb5-3 \
+    libkrb5support0 \
+    && rm -rf /var/lib/apt/lists/*
+
 # Specify working directory for the app in the docker container
 WORKDIR /app
 
@@ -19,8 +27,8 @@ RUN --mount=type=cache,target=/go/pkg/mod \
 FROM build-common AS dev
 
 # Install air for hot reload & delve for debugging
-RUN go install github.com/air-verse/air@latest && \
-    go install github.com/go-delve/delve/cmd/dlv@latest
+RUN go install github.com/cosmtrek/air@v1.43.0 && \
+    go install github.com/go-delve/delve/cmd/dlv@v1.20.2
 
 # Copy the remaining source code
 COPY . .

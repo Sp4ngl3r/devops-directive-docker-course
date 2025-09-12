@@ -37,8 +37,9 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
-          file: ./06-building-container-images/api-node/Dockerfile.8
+          file: ./05-example-web-application/api-node/Dockerfile
           context: ./05-example-web-application/api-node/
+          target: prod
           push: true
           tags: ${{ steps.meta.outputs.tags }}
 
