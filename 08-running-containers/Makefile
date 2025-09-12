@@ -77,10 +77,11 @@ docker-run-all:
 		--restart unless-stopped \
 		client-react-vite
 
+	# Due to port conflicts, use nginx on port 6060
 	docker run -d \
 		--name client-react-nginx \
 		--network my-network \
-		-p 80:8080 \
+		-p 6060:8080 \
 		--restart unless-stopped \
 		client-react-ngnix
 

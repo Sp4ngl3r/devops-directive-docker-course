@@ -34,7 +34,7 @@ We want our development environment to have the following attributes:
 3) **Automatic reloading of the application:** 
    - <ins>*React Client:*</ins> We are using Vite for the react client which handles this handles this automatically
    - <ins>*Node API:*</ins> We added nodemon as a development dependency and specify the Docker CMD to use it
-   - <ins>*Golang API:*</ins> We added a utility called `air` (https://github.com/cosmtrek/air) within `Dockerfile.dev` which watches for changes and rebuild the app automatically.
+   - <ins>*Golang API:*</ins> We added a utility called `air` (https://github.com/air-verse/air) within `Dockerfile.dev` which watches for changes and rebuild the app automatically.
 
 4) **Use a debugger:**
    - <ins>*React Client:*</ins> For a react app, you can use the browser developer tools + extensions to debug. I did include `react-query-devtools` to help debug react query specific things. It is also viewed from within the browser.
